@@ -1,0 +1,426 @@
+---
+title: "Aufgabe 2"
+output: html_notebook
+---
+Ausdrücke:
+
+Arithmetische Operation
+```{r}
+1+1
+```
+
+String
+```{r}
+"Arr, matey!"
+```
+
+Arithmetische Operation
+```{r}
+6*7
+```
+
+Logische(boolsche) Werte
+
+```{r}
+3 < 4
+```
+Das Zeichen "==" ist bekannt aus Java.
+```{r}
+2+2 == 5
+```
+
+T, bzw. F sind shorthands (Abküzrungen, wenn man so will) für boolsche Werte True und False
+
+```{r}
+T==TRUE
+```
+
+```{r}
+F==FALSE
+```
+
+<- ist der Zuweisungsoperator in R.
+
+```{r}
+x<- 42
+print(x)
+```
+
+x kann nun als Variable in arithmetischen Operationen benutzt werden
+
+```{r}
+x/2
+```
+
+Dabei ist in R eine Variable nicht an einen Datentypen gebunden.
+
+```{r}
+x<-"Arr, matey!"
+print(x)
+```
+
+Um den Wert einer Variable ohne die Print-Methode auszudrucken, ist die Variable einfach aufzurfen
+
+```{r}
+x
+```
+
+Wie bereits erwähnt, kann eine bereits existierende Variable jeden Datentyp enthalten.
+
+```{r}
+x <- TRUE 
+```
+
+
+Mit der "sum"-Methode können wir Zahlen zusammenrechnen.
+
+```{r}
+sum(1,3,5)
+```
+
+Mit der rep(Argument1, times = Anzahl) kann etwas(Argument 1) "Anzahl"-mal oft geprintet werden.
+Hier ist Argument1 ein String.
+
+```{r}
+rep("Yo ho!", times = 3)  
+```
+
+Die Wurzel einer Zahl erhalten wir durch sqrt(Zahl)
+
+```{r}
+sqrt(16)
+```
+
+Mit help(methode) kann für eine Methode "Hilfe", welches informationen zur Methode darstellt, ausgedruckt werden
+
+```{r}
+help(sum)
+```
+
+Zusätzlich gibt es auch die example(methode) methode, womit sich beispiele für eine Methode anzeigen lassen
+
+```{r}
+example(min)
+```
+
+```{r}
+help(rep)
+```
+
+Mit list.files()
+
+```{r}
+list.files()
+```
+
+Ausführen von Skripts mit Zeichenfolge erfolgen mit source(Skript)
+
+```{r}
+source("bottle1.R")
+source("bottle2.R")
+```
+
+Vektoren:
+
+```{r}
+
+```
+
+Ein Vektor kann mehrere Daten eines  Datentyps beherbergen. Ein Vektor kann mit c() erzeugt werden. Als Argumente kommen die Werte, abgetrennt mit Kommata.
+c steht für combine
+Falls mehrere Datentypen vorkommen und wir einen String im Vektor haben, werden alle zu Strings konvertiert.
+
+```{r}
+c(4, 7, 9)
+c('a', 'b', 'c')
+c(1, TRUE, "three")
+
+```
+
+Wir können Zahlenfolgen erstellen, indem wir entweder:
+1. Anfangszahl:Endzahl benutzen
+2. seq (Anfangszahl, Endzahl) benutzen
+3. Endzahl:Anfangszahl
+
+```{r}
+5:9
+seq(5, 9)
+9:5
+```
+Ebenso ist es uns mit seq möglich, als drittes Argument das Intervall der Folge zu bestimmen
+
+```{r}
+seq(5, 9, 0.5)
+```
+Angenommen wir haben einen Vektor
+```{r}
+sentence <- c('walk', 'the', 'plank')
+```
+
+Dann können wir auf Werte eines Vektors zugreifen, indem wir Vektorvariable[index] benutzen, angefangen bei 1, nicht bei 0!
+
+```{r}
+sentence[1]
+```
+
+Ausserdem ist es uns gestattet, dem Vektor neue Werte hinzuzufügen/Werte im Vektor zu verändern
+
+```{r}
+sentence[4] <- 'to'
+sentence[3] <- "dog"
+```
+
+Mehrere Werte lassen sich auch gleichzeitig ausdrucken, ebenso Sequenzen von Indizes:
+
+```{r}
+sentence[c(1, 3)]
+sentence[2:4]
+```
+
+An die Sequenz angelehnt, lassen sich neue Werte hinzufügen
+
+```{r}
+sentence[5:7] <- c('the', 'poop', 'deck')
+```
+
+Mithilfe von names() können wir Elementen im Vektor Bezeichner zuweisen.
+
+```{r}
+ranks <- 1:3
+```
+
+Anwendung von names():
+
+```{r}
+names(ranks) <- c("first", "second", "third")
+```
+
+... und auch dementsprechend abrufen, anhand der Bezeichner.
+
+```{r}
+ranks["first"]
+```
+
+Das bedeutet auch, dass wir anhand vom Bezeichner durch names() wir Objekten im Vektor neue Werte Zuweisen dürfen.
+
+```{r}
+ranks["thi?rd"] <- 4 
+```
+
+Mit barplot können wir ein Säulendiagramm von Vektoren-Objekten erstellen.
+
+```{r}
+vesselsSunk <- c(4, 5, 1)
+barplot(vesselsSunk)
+```
+
+Dieses Diagramm lässt sich mit names mithilfe von Bezeichnern aufhübschen.
+
+```{r}
+names(vesselsSunk) <- c("England", "France", "Norway")
+barplot(vesselsSunk)
+```
+
+Wir können auch eine sequenz mithilfe von barplot darstellen. (Aufsteigende Werte z.b)
+
+```{r}
+barplot(1:100)
+```
+Welches natürlich auch mit seq() funktioniert.
+```{r}
+barplot(seq(1,5,0.5))
+```
+
+Angenommen a ist ein Vektor
+
+```{r}
+an <- c(1, 2, 3)
+```
+
+Dann stehen uns verschiedene Arithmetische Operationen zur Vefügung, die auf alle Werte angewednet werden können
+
+```{r}
+an + 1
+```
+
+```{r}
+an / 2
+```
+
+```{r}
+an * 2
+```
+
+Additon/Subtraktion mit anderem Vektor:
+
+
+```{r}
+b <- c(4, 5, 6)
+a+b
+a-b
+```
+
+Analysieren, ob Vektoren identische Werte haben, anhand von Indizes
+
+```{r}
+a == c(1, 99, 3)
+```
+
+Den Sinus eines Vektors ermitteln:
+sin(vektor)
+
+```{r}
+sin(a)
+```
+
+Die Quadratzahlen eines Vektors
+
+```{r}
+sqrt(a)
+```
+
+Erstellung eines Vektors + Vektorwerten in einem seperaten Vektor
+
+```{r}
+x <- seq(1, 20, 0.1)
+y <- sin(x)
+```
+
+Das erstellen eines Graphen erfolgt mit plot(Vektor). In diesen können auch 2 Vektoren (Argument 1 = X Achse, Argument 2 = Y-Achse) übergeben werden.
+
+```{r}
+plot(x,y)
+```
+```{r}
+values <- -10:10
+absolutes <- abs(values)
+plot(values, absolutes)
+```
+
+Nicht vohandene Werte in einem Vektor erlauben z.B. kein Summieren.
+
+```{r}
+a <- c(1, 3, NA, 7, 9)
+sum(a)
+```
+
+mit einem zusätzlichen Argument "na.rm = TRUE"", können wir nicht vorhandene Werte eliminieren.
+
+```{r}
+sum(a, na.rm = TRUE)
+```
+
+Matrizen
+
+Matrizen lassen sich auch als Zweidimensionale Arrrays beschreiben
+Die Initialisierung erfolgt wie folgt:
+
+matrix(0,3,4)
+0 = Das füllen aller Werte mit 0
+3 = Anzahl der Reihen (1. Dimension)
+4 = Anzahl der Spalten (2.Dimension)
+
+```{r}
+matrix(0,3,4)
+```
+
+Alternativ kann man eine Matrix auch mit werten aus einem Vektor füllen:
+
+```{r}
+a <- 1:12
+
+matrix(a, 3, 4)
+```
+
+```{r}
+plank <- 1:8
+```
+
+Mit dim() (Kurz für dimension) lassen sich dimensionen für Matrizen bestimmen:
+
+```{r}
+dim(plank) <- c(2, 4)
+print(plank)
+```
+
+Das zugreifen auf Daten in einer matrix erfolgt so:
+
+matrixvarriable[REIHE, SPALTE]
+
+```{r}
+plank[2, 3]
+plank[1, 4]
+```
+
+Ebenso lassen sich Werte zuweisen:
+
+```{r}
+plank[1, 4] <- 0
+plank
+```
+
+Werte einer gesamten Reihe lassen sich ausdrucken, indem man nur die Reihe (1. Argument) angibt aber die zweite leer lässt:
+
+```{r}
+plank[2,] 
+```
+
+So auch Werte einer Spalte oder mehrerer Spalten
+
+```{r}
+plank[, 4]
+plank[, 2:4]
+```
+
+Speichern einer Matrix in einer Variable:
+
+```{r}
+elevation <- matrix(1, 10, 10)
+```
+
+Zuweisen eines Wertes in die 4.Reihe, 6. Spalte
+
+```{r}
+elevation[4, 6] <- 0
+```
+
+Mit contour können wir anhand unserer Matrix eine contour-karte erstellen
+
+```{r}
+contour(elevation)
+```
+
+Oder eine 3d-Abbildung mit persp(matrix). Persp bewirkt auch, dass unser höchster Wert der Matrix ganz oben zu sehen ist ist.
+
+```{r}
+persp(elevation)
+```
+
+Mithilfe von expand können wir dies korrigieren und unsere sicht ändern:
+
+```{r}
+persp(elevation, expand=0.2)
+```
+
+Mit image lassen sich Werte farblich abheben.
+
+```{r}
+image(elevation)
+```
+
+
+
+
+Zur Beantwortung ihrer Frage, welche ling. Phänomene am besten in die ordinale Skala einzuordnen sind:
+
+Denkbar ist beispielsweise das Vorkommen von Wortarten, Wortlängen.
+Wortarten an sich erlauben uns nicht, sie miteinander statistisch zu vergleichen, denn keine ist größer/kleiner, schlechter/besser als die Andere. Es handelt sich hier lediglich um qualitative Merkmale, die wir in eine Nominalskala einordnen würden. 
+Wenn wir jedoch z.B. einen getaggten Korpus haben, können wir ermitteln, welche Wortart häufiger vorkommt. 
+Demensprechend ist es möglich, Wortarten anhand von Häufigkeit anzuordnen, wodurch wir ein komparatives Merkmal bestimmen.
+Das heisst, sei x die Anzahl an Vorkommen und N/V/ADJ Tags. Es kommen in einem fiktiven Korpus 10000 Nomen, 8000 Verben und 2000 Adjektive vor. Dann hätten wir: xN > xV > xAdj. Wenn wir betrachten, wie niedrig die Vorkommen sind, können wir dies analog in yN < yV < yADV anordnen.
+Wir erheben die Anzahl durch messen und wollen Wortarten lediglich anhand von Häufigkeit sortieren.
+Dies funktioniert auch mit einzelnen Wörtern (d.h. wie oft ein Wort in einem Korpus vorkommt).
+
+Da wir schon beim Thema Korpora sind: Falls möglich, könnte man auch die Anzahl aller intransitiven/transitiven Verben (im Englischen z.b in-/mono-/ditranstive verbs) ermessen und je nach häufigkeit anordnen (in Ränge).
+
+Auf orthographischer Ebene könnte man sich auch Wortlängen (d.h Buchstaben pro Wort) vergleichen. Wörter, die der Menge der Wörter mit der am häufigsten vorkommenden Wortlänge (z.b 5 Buchstaben pro Wort) angehören, bekommen Rang 1, die zweithäufigste Länge (inkl. aller Wörter) Rang 2 etc..
