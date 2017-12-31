@@ -1,0 +1,214 @@
+Session 04 - Ali Kemal Yalama (1296656)
+
+Aufgabe 02: Arbeit mit DataFrames
+
+2.1:
+
+1. Vektoren Erstellen
+
+```{r}
+#Instanziierung Vektoren
+Wortart <- c("ADJ","ADV","N","KONJ","PRAEP")
+TokenFrequenz <-c(421,447,1411,458,455)
+TypenFrequenz <-c(271,103,735,18,37)
+Klasse <- c("offen","offen","offen","geschlossen","geschlossen")
+```
+
+2. Vekotren in einem DataFrame speichern:
+
+```{r}
+x <- data.frame(Wortart, TokenFrequenz,TypenFrequenz,Klasse)
+
+str(x) #Untersuchung von Strukturen
+```
+
+Man sieht, dass Integervektoren ihre Werte beibehalten, wohingegen Vektoren bestehend aus Strings Integerwerte erhalten (z.B "geschlossen" = 2, "offen" = 1)
+
+```{r}
+ x <- data.frame(Wortart, TokenFrequenz, TypenFrequenz,Klasse, row.names=Wortart)
+x
+```
+
+Mit row.names können wir jeder Reihe einen Bezeichner geben. Wenn wir einen Vektor übernehmen, werden die namen vom Vektor übernommen.
+
+```{r}
+str(x) 
+```
+
+
+2.2
+
+```{r}
+write.table(x, file="aufgabe99.csv", sep='\t')
+write.table(x, file=, sep='\t')
+?write.table #aufruf hilfemenü
+```
+
+Write.table kann sein erstes Argument (hier x) ausgeben oder auf eine Datei schreiben. Falls das Argument file leer bleibt, erfolgt ein Output auf die Konsole. Oben erfolgt der Output zweimal: Erstens in eine txt-Datei genannt "aufgabe99", zweitens auf die Konsole. Das dritte Argument, sep="\t" sorgt dafür, dass die Informationen in der Datei visuell treu der Tabelle angeordnet werden - und es damit auch hübscher aussieht.
+
+2.3
+
+```{r}
+x <- read.table(file='aufgabe99.csv', header=(TRUE), row.names=1, sep='\t')
+?read.table
+x
+```
+
+Ganz intuitiv zu write table gibt es read table. Mit file="(Dateiname)" können wir eine Tablle(ndatei) öfnnen.
+
+Mit header, welches die boolschen Werte, True, False oder "True oder False" annehmen kann, müssen wir bestimmen, ob die
+Datei Variablenwerte als Überschrifen enthält. Man kann sich aber diese Arbeit sparen und header auf (TRUE|FALSE) setzen. 
+
+Man kann bestimmen, welche Bezeichner die einzelnen Reihen bekommen sollen: wenn man row.names=3 setzen würde, würde man als Reihenname das erhalten, was in der dritten Spalte steht (hier bei row.names=3 erhalten wir: Tokenfrequenz, bei row.names=1 ist es getreu der eingelesenen Tabelle)
+
+Desweiteren kann man unter Anderem noch sep als Argument zur Formatierung der Tabelle (falls nötig) aufrufen.
+
+2.4
+
+Wie in vorigen Sessions angesprochen, können wir Elemente mit dem $-Zeichen ansprechen:
+
+Variablenname$Element
+
+```{r}
+x$TokenFrequenz
+x$Klasse
+```
+
+Alternativ geht auch attach(Variablenname)
+Wir müssen zunächst die Variable (hier das DataFrame X) aufrufen via attach, dann können wir uns den Umweg mit dem $-Zeichen sparen.
+
+```{r}
+attach(x) #Laden von DataFrame
+TypenFrequenz
+```
+
+Alternativ können wir auch auf Elemente von DataFrames zugreifen, indem wir es so behandeln wie ein Array.
+Reminder:
+
+x[2,3] = Zweite Reihe, dritter Spalte
+x[2:4] = Spalte 2 bis 4
+x[,1] = Erste Spalte
+x[3,] = Dritte Reihe
+
+```{r}
+x[2,1]
+#x[2:4]
+x[,1]
+x[3,]
+```
+
+2.5 Konditionale Abfragen
+
+Kurzgesagt: Überprüfen ob etwas stimmt, wo es stimmt und wo nicht (boolsche Werte)
+Printen von Wahrheitswerten (wo es zutrifft, wo nicht)
+
+```{r}
+  x$Klasse == 'offen'
+```
+
+Ausdrucken der Zeilen, dessen Eigenschaft mit der beschriebenen Kondition übereinstimmt:
+
+```{r}
+
+x[x$Klasse == 'offen',]
+
+```
+
+Alternativ geht auch: (weil Klasse die 4. Spalte ist)
+```{r}
+x[x[,4] == 'offen',]
+```
+
+Arbeiten mit mehreren Konditionen (Man möge sich vorstellen, es befände sich ein &&-Operator (zB aus Java) zwischen beiden eckigen Klammern)
+
+```{r}
+x[x$Klasse == 'offen',][x$TypenFrequenz > 150,]
+```
+
+```{r}
+x[x$Klasse == 'geschlossen',][x$TypenFrequenz > 100,]
+```
+
+Drucke alle Elemente aus der dritten Spalte aus, dessen Wert in der zweiten Spalte eine spezifische Bedingung erfüllt.
+
+```{r}
+x[,3][which(x[,2] > 450)]
+```
+
+2.6
+
+Einspeichern eines subsets (Auswahl der zugehörigen Merkmale durch konditionale Abfragen)
+```{r}
+x1 <- subset(x, x$Klasse == 'geschlossen')
+```
+
+```{r}
+x1
+```
+
+Wenn Sie die Tablle vor Augen haben:
+Für x2 trifft nichts zu, x2 bleibt leer.
+
+```{r}
+x2 <- subset(x, x$Klasse == 'offen' & x$TypenFrequenz < 100)
+x3 <- subset(x, x$Klasse == 'offen' & x$TypenFrequenz < 200)
+x4 <- subset(x, x$Klasse == 'offen' | x$Wortart == 'KONJ')
+```
+
+```{r}
+x2
+x3
+x4
+```
+
+2.7
+
+Eingebauter Editor:
+
+Es wird sich ein Fenster öffnen, womit wir die Werte des DataFrames ändern können.
+```{r}
+fix(x)
+```
+
+2.8
+
+Zum Sortieren kommen zwei Methoden in Frage:
+
+sort(VarName)
+order(VarName)
+
+```{r}
+y <- c(1,18,30,6)
+sort(y)
+order(y)
+```
+
+Bei beiden Methoden werden Zahlenwerte anhand ihrer größe unterschieden. Der wesentliche unterschied ist, dass Order 
+die einzelnen Einheiten durchnummeriert und (hier) die Nummern statt Werte wiedergibt.
+Wenn wir dem Variablennamen ein "-" vorangehängt wird, können wir eine von groß nach klein sortieren.
+
+```{r}
+order(-y)
+```
+
+
+Neu-arrangieren von DataFrames: Ordering anhand einer Spalte.
+
+```{r}
+x[order(x$TypenFrequenz),]
+```
+
+In descending order:
+
+```{r}
+x[order(-x$TypenFrequenz),]
+```
+
+2.9 Zufälligkeiten:
+
+```{r}
+?sample
+x[sample(length(x$Klasse)),]
+```
+
+Randbemerkung: length() sagt aus, wie viele Reihen ausgegeben werden. Bei length(Spalte)-y Werden so viele Reihen ausgedruckt wie Spalte Reihen hat, abzüglich der größe von y.
