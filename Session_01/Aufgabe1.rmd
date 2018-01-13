@@ -89,7 +89,7 @@ print(a)
 ```
 
 Kurze Re-instanziierung von a; rm(list=ls(all=TRUE)) 
-löscht alle Werte
+löscht alle Werte, die sich in deinem Workspace befinden. Das bedeutet auch, dass alle bis zu einem Zeitpunkt erstellten Werte im Code nach rm(list=ls(all=TRUE)) nicht länger existieren. Man sollte daher damit sehr sehr vorsichtig umgehen! (13.1.18)
 
 ```{r}
 a <-sqrt(x=99)
