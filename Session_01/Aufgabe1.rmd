@@ -3,10 +3,10 @@ title: "StatClass2017 Notebook 1 Yalama"
 output: html_notebook
 ---
 
-Wie erläutert, hier eine kommentierte Notebookdatei. Die Codes stimmen nicht ganz überein; es sind im Endeffekt Variationen von den bereits vorhanden Codes. 
-Bei den Kommentierungen werde ich erwähnen, um welchen Code es sich handelt und werde kurz erläutern worum es geht.
+Wie erlÃ¤utert, hier eine kommentierte Notebookdatei. Die Codes stimmen nicht ganz Ã¼berein; es sind im Endeffekt Variationen von den bereits vorhanden Codes. 
+Bei den Kommentierungen werde ich erwÃ¤hnen, um welchen Code es sich handelt und werde kurz erlÃ¤utern worum es geht.
 Ziel ist es ja, ein Notebook mit Code und Kommentierung zu erstellen, deswegen habe ich mir die Freiheit genommen,
-mit der Programmiersprache R zu experimentieren und meine Beispiele, stark angelehnt an unsere Literatur, zu erläutern.
+mit der Programmiersprache R zu experimentieren und meine Beispiele, stark angelehnt an unsere Literatur, zu erlÃ¤utern.
 
 Code 1 Seite 59:
 
@@ -34,7 +34,7 @@ Code 1 Seite 61
 Kapitel 2: Functions and Arguments
 Anwendung einer vordefinierten Methode
 Ob das Argument nun (x=5) oder (5) ist spielt 
-für den gewünschten Output noch keine Rolle.
+fÃ¼r den gewÃ¼nschten Output noch keine Rolle.
 
 ```{r}
 sqrt(x=5)
@@ -57,7 +57,7 @@ print() ist ganz praktisch, um u.A. die Resultate direkt in der PDF/HTML oder wa
 print(a)
 ```
 
-Wobei wir uns auch die Methode print(a) scheinbar sparen können und nur a schreiben können.
+Wobei wir uns auch die Methode print(a) scheinbar sparen kÃ¶nnen und nur a schreiben kÃ¶nnen.
 
 ```{r}
 a
@@ -81,7 +81,7 @@ a<- a+2
 print(a)
 ```
 
-Mit rm(argument) wird nicht der Wert gelöscht des Arguments, sondern das Objekt als solches. 
+Mit rm(argument) wird nicht der Wert gelÃ¶scht des Arguments, sondern das Objekt als solches. 
 
 ```{r}
 rm(a)
@@ -89,7 +89,7 @@ print(a)
 ```
 
 Kurze Re-instanziierung von a; rm(list=ls(all=TRUE)) 
-löscht alle Werte
+lÃ¶scht alle Werte
 
 ```{r}
 a <-sqrt(x=99)
@@ -100,8 +100,8 @@ print(a)
 rm(list=ls(all=TRUE))
 print(a)
 ```
-Wenn wir ein Vektor erstellen wollen und ihn direkt mit Zahlen (1...n) füllen wollen benutzen wir
-myVar<-c(1:10) #myVar als jede mögliche Variable
+Wenn wir ein Vektor erstellen wollen und ihn direkt mit Zahlen (1...n) fÃ¼llen wollen benutzen wir
+myVar<-c(1:10) #myVar als jede mÃ¶gliche Variable
 
 ```{r}
 myVar<-c(1:10)
@@ -110,13 +110,13 @@ print(myVar)
 
 SEITE 63
 
-Um zufällige Stichproben zu entnehmen, können wir Sample benutzen wie hier beschrieben:
+Um zufÃ¤llige Stichproben zu entnehmen, kÃ¶nnen wir Sample benutzen wie hier beschrieben:
 
 ```{r}
 sample(myVar, size=5, replace=TRUE, prob=NULL)
 ```
 
-size beschreibt die größe unseres Vektors
+size beschreibt die grÃ¶ÃŸe unseres Vektors
 replace (welches by default false ist) sagt aus, dass wir die Werte mit Ersetzung generieren
 
 replace = True
@@ -128,23 +128,26 @@ sample(myVar, 4, TRUE)
 ```
 
 
+replace = TRUE (3. Argument) bedeutet, dass wenn wir mithilfe von sample() werte einem Vektor entnehmen, der aus dem Vektor so eben entnommene Wert nochmal entnommen werden kann. (Keine Gewichtung)
+replace = FALSE (3. Argument) beduetet, dass einmal aus einem Vektor entnommene Werte (z.b myVar[4]) nicht nochmal entnommen werden kann (Gewichtung)
+(Edit 13.01.18)
 
 
 
-replace = False
+replace = FALE
 
 ```{r}
 sample(myVar, 4, FALSE)
 sample(myVar, 4, FALSE)
 ```
 
-Wenn wir alle Werte eines Vektors mit zufällig anordnen wollen dann brauchen wir einfach nur den Vektor selbst als Arugment in sample() anzugeben:
+Wenn wir alle Werte eines Vektors mit zufÃ¤llig anordnen wollen dann brauchen wir einfach nur den Vektor selbst als Arugment in sample() anzugeben:
 
 ```{r}
 sample(myVar)
 ```
 
-Ähnlich funktioniert es, wenn wir Zahlen von 1...n in einem Vektor zufällig anordnen wollen.
+Ã„hnlich funktioniert es, wenn wir Zahlen von 1...n in einem Vektor zufÃ¤llig anordnen wollen.
 Hierbei benutzen wir sample(n)
 
 
@@ -155,7 +158,7 @@ sample(15) #n=15
 
 SEITE 64
 
-In der HTML zwar schlecht zu sehen, aber: Wenn die .rmd ausgeführt wird (angenommen Sie laden die .rmd in RStudio und sie führen genau diese 5 Zeilen codes aus)
+In der HTML zwar schlecht zu sehen, aber: Wenn die .rmd ausgefÃ¼hrt wird (angenommen Sie laden die .rmd in RStudio und sie fÃ¼hren genau diese 5 Zeilen codes aus)
 wird das Programm sie fragen, ob sie die Ergebnisse speichern wollen; dies wird bewirkt durch q() in Zeile 5 (nach dem ergebnis von print).
 
 ```{r}
@@ -170,7 +173,7 @@ q()
 SEITE 65
 
 
-Für den Anfang ist es ganz gut, Vektoren ähnlich zu Arrays zu betrachten.
+FÃ¼r den Anfang ist es ganz gut, Vektoren Ã¤hnlich zu Arrays zu betrachten.
 
 Mit sqrt hatten wir vorher bereits die Wurzel errechnet.
 
@@ -178,25 +181,25 @@ Mit sqrt hatten wir vorher bereits die Wurzel errechnet.
 a<-sqrt(x=5)
 ```
 
-Hierbei ist a, welches den Wert für die Wurzel von 5 hält ein Vektor der länge 1.
-Dies ist auch automatisch die Antwort auf die Frage, was die [1] zu bedeutet. Dies bezeichnet nämlich das erste Element im Vektor. Aus anderen Programmiersprachen kennt man das als [0].
+Hierbei ist a, welches den Wert fÃ¼r die Wurzel von 5 hÃ¤lt ein Vektor der lÃ¤nge 1.
+Dies ist auch automatisch die Antwort auf die Frage, was die [1] zu bedeutet. Dies bezeichnet nÃ¤mlich das erste Element im Vektor. Aus anderen Programmiersprachen kennt man das als [0].
 Ein Beispiel sehen Sie weiter unten, bei der Konkatenation zweier Vektoren, wo wir das erste mal eine [5] und eine [8] sehen.
 
-Zu überprüfen ist dies hiermit:
+Zu Ã¼berprÃ¼fen ist dies hiermit:
 
 ```{r}
 is.vector(a) #Wahrheitswert: ist a ein Vektor?
-length(a) #Wie viele daten enthält a als Vektor?
+length(a) #Wie viele daten enthÃ¤lt a als Vektor?
 ```
 
-Auch können z.B. Strings, nicht nur Integer, in Vektoren gespeichert werden:
+Auch kÃ¶nnen z.B. Strings, nicht nur Integer, in Vektoren gespeichert werden:
 
 ```{r}
 myStr<-"sqrt(x=5)"
 myStr #zum Priten des Vektors
 ```
 
-Hier nur eine kleine erinnerung, dass Vektoren mehr als nur ein Element enthalten können. Due überführten Elemente sind mit einem Komma zu trennen.
+Hier nur eine kleine erinnerung, dass Vektoren mehr als nur ein Element enthalten kÃ¶nnen. Due Ã¼berfÃ¼hrten Elemente sind mit einem Komma zu trennen.
 
 ```{r}
 myVarEins<-c("Hallo","Welt","DrittesWort", "ViertesWort")
@@ -209,18 +212,18 @@ SEITE 66/67
 
 Konkatenation von 2 Vektoren:
 
-Hierfür kann man den append-operator benutzen, anzuwenden auf diese Art und Weise:
+HierfÃ¼r kann man den append-operator benutzen, anzuwenden auf diese Art und Weise:
 
 ```{r}
 myKonkat=append(myVarEins, myVarZwei)
 myKonkat
 ```
 
-Was fällt Ihnen auf?
-Die Werte aus dem Vektor myVarZwei sind ursprünglich Intenger. Da Vektoren aber einheitlich/rein in ihrem Datentyp sind,
-werden ähnlich wie in Java, Integer als Strings geparst, um Konkatenation möglich zu machen!
+Was fÃ¤llt Ihnen auf?
+Die Werte aus dem Vektor myVarZwei sind ursprÃ¼nglich Intenger. Da Vektoren aber einheitlich/rein in ihrem Datentyp sind,
+werden Ã¤hnlich wie in Java, Integer als Strings geparst, um Konkatenation mÃ¶glich zu machen!
 
-Wir können auch bestehende Vektoren mit append verändern/erweitern:
+Wir kÃ¶nnen auch bestehende Vektoren mit append verÃ¤ndern/erweitern:
 
 ```{r}
 myVarDrei<-c(42) #Ganz stupide einen neuen Vektor erstellt, im Sinne des beispiels
@@ -241,7 +244,7 @@ str(myVarDrei)
 str(myKonkat)
 ```
 
-Mithilfe von Rep können wir einen Vektor in einen Vektor beliebig oft übergeben.
+Mithilfe von Rep kÃ¶nnen wir einen Vektor in einen Vektor beliebig oft Ã¼bergeben.
 Hier ein beispiel:
 
 ```{r}
@@ -251,7 +254,7 @@ print(xd)
 
 xd = Ein neuer Vektor, zur Demonstration von rep
 myVarDrei ist bereits bekannt (Ein Vektor, siehe oben) und ist das erste Argument der rep-Methode.
-Das zweite Argument der rep-Methode besagt, wie oft wir die Datenstruktur übergeben/reinpacken wollen.
+Das zweite Argument der rep-Methode besagt, wie oft wir die Datenstruktur Ã¼bergeben/reinpacken wollen.
 
 SEITE 68:
 
@@ -262,7 +265,7 @@ Ein anderes Beispiel:
 myVarEins
 ```
 
-Sie kennen diesen Vektor bereits. Wenn Sie wollen, dass jedes einzelne Element hintereinander (d.h "Hallo"" steht mehrmals hintereinander in diesem Beispiel) können sie rep mit dem Argument each, anstatt dem Standardargument benutzen:
+Sie kennen diesen Vektor bereits. Wenn Sie wollen, dass jedes einzelne Element hintereinander (d.h "Hallo"" steht mehrmals hintereinander in diesem Beispiel) kÃ¶nnen sie rep mit dem Argument each, anstatt dem Standardargument benutzen:
 
 ```{r}
 xd2<-rep(myVarEins, each = 4)
@@ -271,7 +274,7 @@ xd2
 
 Der range-operator:
 
-Der Range-Operator ist nichts anderes als: ich habe einen Startwert(i) und möchte bis Wert n gehen.
+Der Range-Operator ist nichts anderes als: ich habe einen Startwert(i) und mÃ¶chte bis Wert n gehen.
 Schreibweise: i:n
 
 ```{r}
@@ -288,9 +291,9 @@ xd3
 
 Alternativ gibt es die seq-Methode. 
 
-seq(1,3,1) = Das dritte Argument wäre Startwert(i), das Zweite ist der Endwert(n) und das Dritte beschreibt, um wieviel wir addieren pro schritt. 
-Für das dritte Argument ist der Standardwert 1, im folgenden Beispiel hätte man das dritte Argument auch auslassen können.
-Wichtig: n wird nie überschritten! Das bedeutet, würde n überschritten werden beim nächsten Rechenschritt, wird die erste Zahl, die größer als n ist, weggelassen.:
+seq(1,3,1) = Das dritte Argument wÃ¤re Startwert(i), das Zweite ist der Endwert(n) und das Dritte beschreibt, um wieviel wir addieren pro schritt. 
+FÃ¼r das dritte Argument ist der Standardwert 1, im folgenden Beispiel hÃ¤tte man das dritte Argument auch auslassen kÃ¶nnen.
+Wichtig: n wird nie Ã¼berschritten! Das bedeutet, wÃ¼rde n Ã¼berschritten werden beim nÃ¤chsten Rechenschritt, wird die erste Zahl, die grÃ¶ÃŸer als n ist, weggelassen.:
 
 ```{r}
 seq(1,10,1)
@@ -305,7 +308,7 @@ seq(10)
 seq(3, 10)
 ```
 
-Da wir Methoden miteinander kombinieren können ist auch folgendes möglich:
+Da wir Methoden miteinander kombinieren kÃ¶nnen ist auch folgendes mÃ¶glich:
 
 Die Sequenz von 3 bis 10 in Dreierschritten, jeder Wert wird jeweils 4 mal ausgedruckt.
 
@@ -315,7 +318,7 @@ rep(seq(3, 10,3), each=4)
 
 SEITE 69
 
-Angenommen, wir hätten eine Sequenz von i=1 bis n=20.
+Angenommen, wir hÃ¤tten eine Sequenz von i=1 bis n=20.
 
 ```{r}
 seq(1,20)
@@ -323,7 +326,7 @@ seq(1,20)
 
 Jetzt wollen wir aber eine beliebige Anzahl an Werten ausdrucken, zwischen i und n. 
 Diese Werte sollen jedoch den gleichen Abstand zueinander machen.
-Mit length.out können wir dies umsetzen:
+Mit length.out kÃ¶nnen wir dies umsetzen:
 
 Sequenz i = 1, n = 50, Werte = 12
 
@@ -331,12 +334,12 @@ Sequenz i = 1, n = 50, Werte = 12
 seq(1,50, length.out=12)
 ```
 
-Sollten Sie Elemente in einem Vektor benennen wollen, können Sie wie folgt vorgehen:
+Sollten Sie Elemente in einem Vektor benennen wollen, kÃ¶nnen Sie wie folgt vorgehen:
 
 Sie erstellen einen Vektor, falls nicht vorhanden. 
-Dann übergeben Sie den Elementen in dem Vektor, der Reihenfolge entsprechend Namen.
+Dann Ã¼bergeben Sie den Elementen in dem Vektor, der Reihenfolge entsprechend Namen.
 
-Hierfür wird die names()-Methode verwendet. Wie zu sehen, ist ihr Vektor das Argument für names. mit der c-Methode könnnen Sie ihrem Vektor-Elementen Namen/Bezeichner zuweisen. 
+HierfÃ¼r wird die names()-Methode verwendet. Wie zu sehen, ist ihr Vektor das Argument fÃ¼r names. mit der c-Methode kÃ¶nnnen Sie ihrem Vektor-Elementen Namen/Bezeichner zuweisen. 
 
 ```{r}
 myVar5<-c("Erster Wert", "Zweiter Wert", "Dritter Wert"); names(myVar5)<-c("Erster Name", "Zweiter Name",
@@ -351,7 +354,7 @@ print(myVar5)
 
 Einlesen von Vektoren:
 
-Wir können ebenfalls Vektoren on the fly erstellen. Dafür benutzen wir scan().
+Wir kÃ¶nnen ebenfalls Vektoren on the fly erstellen. DafÃ¼r benutzen wir scan().
 
 ```{r}
 myVar6<-scan()
@@ -363,7 +366,7 @@ myVar6<-scan()
 print(myVar6)
 ```
 
-Einmal ENTER drücken: Eingabe des nächsten Werts
-Zweimal ENTER drücken (bei dem letzen Wert): Beenden der Eingabe
+Einmal ENTER drÃ¼cken: Eingabe des nÃ¤chsten Werts
+Zweimal ENTER drÃ¼cken (bei dem letzen Wert): Beenden der Eingabe
 
-Für Character-Strings muss dem der scan-Methode das Argument (what=character(0)) zugewiesen werden.
+FÃ¼r Character-Strings muss dem der scan-Methode das Argument (what=character(0)) zugewiesen werden.
