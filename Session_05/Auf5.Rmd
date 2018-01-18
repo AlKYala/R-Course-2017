@@ -1,0 +1,136 @@
+---
+title: "Bearbeitung der Aufgaben: Session 05"
+---
+
+```{r}
+install.packages("XML")
+```
+
+
+Einlesen von der XML-Datei:
+
+```{r}
+library(XML)
+
+tokens <- vector('character')
+types <- vector('character')
+pos <- vector("character")
+gen <- vector("character")
+
+xmlEventParse(
+  "C:/Users/Ali/Documents/Stat/R-Course-2017-master/data/t_990505_47.xml", 
+  handlers = list(
+    't' = function(name, attr) {
+      tokens <<- c(tokens, attr['word'])
+      types <<- c(types, attr['lemma'])
+      pos <<- c(pos, attr["pos"])
+      gen <<- c(gen, attr["morph"])
+      }
+    ),
+  addContext = FALSE
+  )
+
+#names(tokens) <- NULL
+tokens <- unname(tokens)
+```
+
+Ich habe in ihrem vorgegebenen Code eine Änderung (Zeile 25) vorgenommen.
+
+1) Datenframe aus den Vektoren erstellen:
+
+```{r}
+myData <- data.frame(tokens,types,pos,gen)
+myData
+```
+2) Alphabetische Sortierung, Satzzeichen zuerst, dann Zahlen, dann Buchstaben A-Z
+```{r}
+myData[order(myData$tokens),]
+```
+
+3) Durchschnittliche Wortlänge der Substantive
+
+Unter Substantiven kommen die pos NN und NE in Frage. 
+Demensprechend eine Erstellung eines Subsets welches NN und NE beinhaltet.
+
+```{r}
+Subst <- subset(myData, myData$pos == 'NN' | myData$pos == 'NE')
+#Subst2 <- subset(myData, myData$pos == 'NE')
+
+#Subst <- data.frame(Subst1,Subst2)
+
+Subst
+
+```
+
+Da ich keinen bessere Lösung gefunden habe wird folgendes gemacht: Der vorige schritt diente zum vereinen von NN und NE-Tags, in diesem werden die Einträge der Tokens-Spalte in einem Vektor gespeichert
+
+```{r}
+tt <- as.vector(Subst[,1])
+
+len <- nchar(tt) #länge der token
+mean(len) #Durchschnitt
+```
+
+4) Proportion von Genus
+
+
+Zunächst ermitteln wir, wie Morphologie Genus abbildet. 
+
+```{r}
+levels(Subst$gen)
+```
+
+Das sind alle möglichen Genera. Von uns sind aber nur die Attribute die mit --f, --m oder --n enden von Interesse.
+
+```{r}
+gen1 <- subset(Subst, Subst$gen == 'apf' | Subst$gen == 'asf' |Subst$gen == 'dpf' |Subst$gen == 'dsf' |Subst$gen == 'dsf3' |Subst$gen == 'gsf' |Subst$gen == 'npf' |Subst$gen == 'nsf' |Subst$gen == 'nsf3' )
+
+gen2 <- subset(Subst, Subst$gen == 'apm' | Subst$gen == 'asm' |Subst$gen == 'dpm' |Subst$gen == 'dsm' |Subst$gen == 'dsm' |Subst$gen == 'gsm' |Subst$gen == 'npm' |Subst$gen == 'nsm')
+
+gen3 <- subset(Subst, Subst$gen == 'apn' | Subst$gen == 'asn' |Subst$gen == 'asn3' |Subst$gen == 'dpn' |Subst$gen == 'dsn' |Subst$gen == 'gsn' |Subst$gen == 'gpn' |Subst$gen == 'nsn' |Subst$gen == 'nsn3' )
+```
+
+Das sind Data Frames für alle Wörter, eingeteilt in Femininum, Maskulinum, Neutrum
+
+```{r}
+Fem1 <- dim(gen1)
+Mas1 <- dim(gen2)
+Neu1 <- dim(gen3)
+
+Fem <-Fem1[1]
+Mas <-Mas1[1]
+Neu <-Neu1[1]
+```
+
+Was anschließend noch bleibt, ist eine passende Darstellung herzustellen:
+
+```{r}
+Total <- c(Fem,Mas,Neu)
+names(Total) <- c("Femininum", "Maskulinum", "Neutrum")
+
+pie(Total)
+```
+
+5)
+
+Autosemantische Wörter sind Substantive, Adjektive, Artikel und Verben (Alles, was man im Englischen als Content Word bezeichnet).
+
+Wir können also am einfachsten mit POS arbeiten.
+
+```{r}
+Autosem <- subset(myData, myData$pos == 'ADJA' | myData$pos == 'ADJD' | myData$pos == 'ADV' | myData$pos == 'NN' | myData$pos == 'NE' | myData$pos == 'VVFIN' | myData$pos == 'VVIMP' | myData$pos == 'VVINF' | myData$pos == 'VVIZU' | myData$pos == 'VVPP' | myData$pos == 'VAFIN' | myData$pos == 'VAIMP' | myData$pos == 'VAINF' | myData$pos == 'VAPP' | myData$pos == 'VMFIN' | myData$pos == 'VMINF' | myData$pos == 'VMPP' )
+```
+
+Unser subset "Autosem" enthält jetzt alle ausführungen von Substantiven, Adjektiven, Adverben und Verben in unserer XML Struktur. 
+
+```{r}
+Autosem
+```
+
+Die Menge aller autosemantischen Wörter beträgt:
+
+```{r}
+Sol <- dim(Autosem)
+Sol[1]
+```
+
